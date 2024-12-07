@@ -1,31 +1,60 @@
 import React from "react";
+import { Input, Button } from "@material-tailwind/react";
 import { useState } from "react";
-import { Button } from "@material-tailwind/react";
 
-const Counter = () => {
-  const [count, setCount] = useState(0);
+const Forms = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleIncrease = () => {
-    setCount(count + 1);
+  const handleName = (e) => {
+    setName(e.target.value);
   };
 
-  const handleDecrease = () => {
-    setCount(count - 1);
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const submitForm = () => {
+    setName("");
+    setEmail("");
+    setPassword("");
+    console.log(`Name: ${name}, Email: ${email}, Password: ${password}`);
   };
 
   return (
-    <div className="h-screen flex flex-col gap-10 justify-center items-center">
-      <div className="text-4xl">{count}</div>
-      <div className="flex flex-row gap-10">
-        <Button className="bg-green-800" onClick={handleIncrease}>
-          Increase Count
-        </Button>
-        <Button className="bg-red-700" onClick={handleDecrease}>
-          Decrease Count
-        </Button>
-      </div>
+    <div>
+      <form className="h-screen flex flex-col gap-10 justify-center items-center">
+        <h1>Complete This Form</h1>
+        <div className="w-72">
+          <Input label="name" type="name" value={name} onChange={handleName} />
+        </div>
+        <div className="w-72">
+          <Input
+            label="email"
+            type="email"
+            value={email}
+            onChange={handleEmail}
+          />
+        </div>
+        <div className="w-72">
+          <Input
+            label="password"
+            type="password"
+            value={password}
+            onChange={handlePassword}
+          />
+        </div>
+        <div>
+          <Button onClick={submitForm}>Submit</Button>
+        </div>
+      </form>
     </div>
   );
 };
 
-export default Counter;
+export default Forms;
